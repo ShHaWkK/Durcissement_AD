@@ -1,6 +1,6 @@
 <# 
 .SYNOPSIS
-  AD_Auto.ps1 – Durcissement défensif AD/Windows (GPO + DC configs + détection), FR/EN.
+  Fichier : AD_Auto.ps1 – Durcissement AD/Windows (GPO + DC configs + détection), FR/EN.
 
 .DESCRIPTION
   - CLIENTS GPO : désactive LLMNR, durcit SMB (signing), désactive SMBv1 (client), réduit WPAD/AutoProxy.
@@ -8,7 +8,7 @@
   - DETECTION  : active “LDAP Interface Events” (1644) pour repérer collectes LDAP massives (ex: SharpHound).
   - OPTIONS    : blocage FW 5355 (LLMNR), désactivation NetBIOS à grande échelle (WinRM), groupe Protected Users.
   - SAFE       : mode par défaut AuditFirst (compat). Mode Enforce une fois validé.
-
+  
 .PARAMETERS
   -Mode AuditFirst|Enforce
   -GpoPrefix
@@ -25,10 +25,10 @@
   Ajouter les comptes sensibles au groupe Protected Users : .\AD-Defense-Automation.ps1 -ProtectedUsersToAdd 'admin-secours','svc_sql','svc_backup'
   Bloquer LLMNR direct via firewall + désactiver NetBIOS par remoting:
   .\AD-Defense-Automation.ps1 -BlockLLMNRWithFirewall -PushNetBIOSDisableToClients
-   ou ciblé :
-.\AD-Defense-Automation.ps1 -PushNetBIOSDisableToClients -NetBIOSTargets 'PC-001','PC-002'
-Passer en mode appliqué (après tests) : 
-.\AD-Defense-Automation.ps1 -Mode Enforce
+  ou ciblé :
+  .\AD-Defense-Automation.ps1 -PushNetBIOSDisableToClients -NetBIOSTargets 'PC-001','PC-002'
+  Passer en mode appliqué (après tests) : 
+  .\AD-Defense-Automation.ps1 -Mode Enforce
 #>
 
 [CmdletBinding(SupportsShouldProcess=$true)]
